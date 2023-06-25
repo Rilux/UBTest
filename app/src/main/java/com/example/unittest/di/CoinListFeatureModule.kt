@@ -16,15 +16,14 @@ import com.example.unittest.domain.network.usecase.FetchCoinListFromApiUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityRetainedComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Named
-import javax.inject.Singleton
 
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ActivityRetainedComponent::class)
 class CoinListFeatureModule {
 
     @Provides
@@ -42,7 +41,6 @@ class CoinListFeatureModule {
     }
 
     @Provides
-    @Singleton
     fun provideCoinRankingRepository(
         @Named("CoinRankingApiKey") apiKey: String,
         coinRankingApiService: CoinRankingApiService,
@@ -55,7 +53,6 @@ class CoinListFeatureModule {
         )
 
     @Provides
-    @Singleton
     fun provideCoinsCacheRepository(
         @IoDispatcher dispatcher: CoroutineDispatcher,
         dao: CoinsDao,
@@ -66,7 +63,6 @@ class CoinListFeatureModule {
         )
 
     @Provides
-    @Singleton
     fun provideFetchCoinListFromApiUseCase(
         repository: CoinRankingRepository,
         saveCoinsToCacheUseCase: SaveCoinsToCacheUseCase,
@@ -78,7 +74,6 @@ class CoinListFeatureModule {
 
 
     @Provides
-    @Singleton
     fun provideFetchCoinsListUseCase(
         fetchCoinListFromApiUseCase: FetchCoinListFromApiUseCase,
         fetchCoinsFromCacheUseCase: GetCoinsFromCacheUseCase,
@@ -89,7 +84,6 @@ class CoinListFeatureModule {
         )
 
     @Provides
-    @Singleton
     fun provideSaveCoinsToCacheUseCase(
         repository: CoinsCacheRepository,
     ): SaveCoinsToCacheUseCase =
@@ -98,7 +92,6 @@ class CoinListFeatureModule {
         )
 
     @Provides
-    @Singleton
     fun provideGetCoinsFromCacheUseCase(
         repository: CoinsCacheRepository,
     ): GetCoinsFromCacheUseCase =

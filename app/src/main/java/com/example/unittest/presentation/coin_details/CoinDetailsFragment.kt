@@ -6,14 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.createViewModelLazy
-import androidx.hilt.navigation.HiltViewModelFactory
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.example.unittest.R
 import com.example.unittest.databinding.FragmentCoinDetailsBinding
 import com.example.unittest.domain.core.model.CoinPresentation
@@ -22,7 +18,6 @@ import com.example.unittest.utils.onHide
 import com.example.unittest.utils.onShow
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
