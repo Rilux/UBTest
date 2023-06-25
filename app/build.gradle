@@ -47,6 +47,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
 }
 
 kapt {
@@ -58,7 +59,7 @@ dependencies {
     def okhttp_ver = "4.10.0"
     def room_version = "2.5.2"
     def nav_version = "2.6.0"
-    def coroutines_version = "1.6.4"
+    def coroutines_version = "1.7.1"
 
     //kotlin
     implementation 'androidx.core:core-ktx:1.10.1'
@@ -97,12 +98,17 @@ dependencies {
 
     //Room
     implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+    testImplementation "androidx.room:room-testing:$room_version"
+    androidTestImplementation "androidx.room:room-testing:$room_version"
 
     //Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
 
     //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -112,5 +118,6 @@ dependencies {
     //Glide
     implementation "com.github.bumptech.glide:glide:4.15.1"
     implementation 'com.github.2coffees1team:GlideToVectorYou:2.0.0'
+
 
 }
