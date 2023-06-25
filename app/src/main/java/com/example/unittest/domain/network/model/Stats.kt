@@ -1,19 +1,21 @@
 package com.example.unittest.domain.network.model
 
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Stats(
-    @SerializedName("total")
+    @Json(name = "total")
     val total: Int,
-    @SerializedName("totalCoins")
+    @Json(name = "totalCoins")
     val totalCoins: Int,
-    @SerializedName("totalMarkets")
+    @Json(name = "totalMarkets")
     val totalMarkets: Int,
-    @SerializedName("totalExchanges")
+    @Json(name = "totalExchanges")
     val totalExchanges: Int,
-    @SerializedName("totalMarketCap")
+    @Json(name = "totalMarketCap")
     val totalMarketCap: String,
-    @SerializedName("total24hVolume")
+    @Json(name = "total24hVolume")
     val total24hVolume: String
 )

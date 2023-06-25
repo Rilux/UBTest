@@ -1,8 +1,9 @@
 package com.example.unittest.di
 
 import com.example.unittest.BuildConfig
-import com.google.gson.GsonBuilder
 import com.example.unittest.domain.network.core.CoinRankingApiService
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,7 +13,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import javax.inject.Singleton
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Named
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -23,8 +25,10 @@ class AppModule {
     fun provideCoinRankingApiService(client: OkHttpClient): CoinRankingApiService =
         Retrofit.Builder().baseUrl("https://api.coinranking.com/v2/")
             .addConverterFactory(
-                GsonConverterFactory.create(
-                    GsonBuilder().create()
+                MoshiConverterFactory.create(
+                    Moshi.Builder()
+                        .add(KotlinJsonAdapterFactory())
+                        .build()
                 )
             )
             .client(client)
@@ -48,4 +52,10 @@ class AppModule {
 
             }
         )
+
+    @Provides
+    @Singleton
+    @Named("CoinRankingApiKey")
+    fun provideApiKey(): String = BuildConfig.API_KEY
+
 }

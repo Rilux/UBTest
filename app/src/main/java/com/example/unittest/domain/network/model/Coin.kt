@@ -1,39 +1,52 @@
 package com.example.unittest.domain.network.model
 
 
-import com.google.gson.annotations.SerializedName
+import com.example.unittest.domain.core.model.CoinPresentation
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Coin(
-    @SerializedName("uuid")
+    @Json(name = "uuid")
     val uuid: String,
-    @SerializedName("symbol")
+    @Json(name = "symbol")
     val symbol: String,
-    @SerializedName("name")
+    @Json(name = "name")
     val name: String,
-    @SerializedName("color")
+    @Json(name = "color")
     val color: String?,
-    @SerializedName("iconUrl")
+    @Json(name = "iconUrl")
     val iconUrl: String,
-    @SerializedName("marketCap")
+    @Json(name = "marketCap")
     val marketCap: String,
-    @SerializedName("price")
+    @Json(name = "price")
     val price: String,
-    @SerializedName("listedAt")
+    @Json(name = "listedAt")
     val listedAt: Int?,
-    @SerializedName("tier")
+    @Json(name = "tier")
     val tier: Int,
-    @SerializedName("change")
+    @Json(name = "change")
     val change: String,
-    @SerializedName("rank")
+    @Json(name = "rank")
     val rank: Int,
-    @SerializedName("sparkline")
+    @Json(name = "sparkline")
     val sparkline: List<String>,
-    @SerializedName("lowVolume")
+    @Json(name = "lowVolume")
     val lowVolume: Boolean,
-    @SerializedName("coinrankingUrl")
+    @Json(name = "coinrankingUrl")
     val coinrankingUrl: String,
-    @SerializedName("24hVolume")
+    @Json(name = "24hVolume")
     val hVolume: String,
-    @SerializedName("btcPrice")
+    @Json(name = "btcPrice")
     val btcPrice: String
-)
+) {
+    fun toCoinPresentation(): CoinPresentation =
+        CoinPresentation(
+            uuid = uuid,
+            symbol = symbol,
+            name = name,
+            color = color,
+            iconUrl = iconUrl,
+            price = price
+        )
+}

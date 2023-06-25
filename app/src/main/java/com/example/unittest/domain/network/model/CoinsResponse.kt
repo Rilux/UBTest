@@ -1,11 +1,13 @@
 package com.example.unittest.domain.network.model
 
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class CoinsResponse(
-    @SerializedName("status")
+    @Json(name = "status")
     val status: String,
-    @SerializedName("data")
+    @Json(name = "data")
     val `data`: Data
 )
